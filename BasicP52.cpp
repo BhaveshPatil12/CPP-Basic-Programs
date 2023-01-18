@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+long long int numReverse(long long int number)
+{
+    long long int rem = 0;
+    while (number > 0)
+    {
+    rem = (rem * 10) + (number % 10);
+        number = number / 10;
+    }
+    return rem;
+}
+bool is_Palindrome(long long int num)
+{
+    return (num == numReverse(num));
+}
+bool isLychrel(int num, const int iterCount = 500)
+{
+    long long int temp = num;
+    long long int rev;
+    for (int i = 0; i < iterCount; i++)
+    {
+        rev = numReverse(temp);
+        if (is_Palindrome(rev + temp))
+            return false;
+        temp = temp + rev;
+    }
+    return true;
+}
+int main()
+{
+int lyno;
+bool l;
+ cout << " Input a number: ";
+ cin >> lyno;
+    l = isLychrel(lyno);
+    if (l==0)
+    {
+        cout <<" The number is not a Lychrel number."<<endl;
+    }
+    else
+    if(l==1)
+    {
+        cout<<" The number is a Lychrel number."<<endl;;
+    }
+    return 0;
+}
